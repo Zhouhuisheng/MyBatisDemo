@@ -3,13 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace需要和Mapper接口的全类名保持一致 -->
-<mapper namespace="mybatis.Mapper.UserMapper">
+<mapper namespace="mybatis.mapper.UserMapper">
     <!--
-        通过 id 绑定方法 执行匹配的SQL语句
-        通过 resultType 指定返回值类型 将表中查询的数据封装成哪个类的对象
+        id：绑定方法 执行匹配的SQL语句
+        resultType：指定返回值类型 将表中查询的数据封装成哪个类的对象
     -->
     <select id="findAll" resultType="mybatis.pojo.User">
-        <!-- insert into t_user values(null, "admin", "女", "XX省XX市") -->
         select * from t_user
     </select>
 </mapper>

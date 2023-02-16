@@ -1,4 +1,4 @@
-package mybatis.Mapper;
+package mybatis.mapper;
 
 import mybatis.pojo.User;
 

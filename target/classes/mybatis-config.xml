@@ -8,6 +8,7 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
+                <!-- 这是mysql8的，低版本可能会有点不一样，以后注意即可 -->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/mybatis_test"/>
                 <property name="username" value="root"/>
@@ -17,6 +18,9 @@
     </environments>
     <!-- 引入映射文件 -->
     <mappers>
-        <mapper resource="mappers/UserMapper.xml"/>
+        <!-- 指定当前sql映射文件并加载  -->
+        <!-- <mapper resource="mybatis/mapper/UserMapper.xml"/> -->
+        <!-- Mapper代理方式加载sql映射文件  -->
+        <package name="mybatis.mapper"/>
     </mappers>
 </configuration>
