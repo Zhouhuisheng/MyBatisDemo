@@ -3,8 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 配置别名，配置后映射文件中可以不必输入pojo类的路径(我不太会用，以后再学) -->
+    <!-- <typeAliases> -->
+    <!--     <package name="mybatis.pojo/"/> -->
+    <!-- </typeAliases> -->
+
     <!-- 配置连接数据库的环境 -->
     <environments default="development">
+        <!-- 可以配置多个环境，从而连接多个数据库，上面default表示默认的环境 -->
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">

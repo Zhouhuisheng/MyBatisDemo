@@ -10,9 +10,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
-public class mybatisTest {
+public class TestFindById {
     @Test
     public void testMybatis() throws IOException {
         // 1. 加载核心配置文件
@@ -24,13 +23,10 @@ public class mybatisTest {
         // 4. 获取接口代理对象（代理开发的方式）
         UserMapper dao = sqlSession.getMapper(UserMapper.class);
         // 5. 执行查询方法
-        List<User> users = dao.selectAll();
-        // 6. 遍历结果
-        for (User user : users) {
-            System.out.println(user);
-        }
+        User user = dao.selectById(3);
+        // 6. 输出结果
+        System.out.println(user);
         // 7. 释放资源
         sqlSession.close();
-        is.close();
     }
 }

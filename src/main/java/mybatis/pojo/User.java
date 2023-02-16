@@ -6,16 +6,16 @@ public class User implements Serializable {
 
 
     private Integer id;
-    private String username;
+    private String userName;
     private String sex;
     private String address;
 
     public User() {
     }
 
-    public User(Integer id, String username, String sex, String address) {
+    public User(Integer id, String userName, String sex, String address) {
         this.id = id;
-        this.username = username;
+        this.userName = userName;
         this.sex = sex;
         this.address = address;
     }
@@ -28,12 +28,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getuserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setuserName(String userName) {
+        this.userName = userName;
     }
 
     public String getSex() {
@@ -56,7 +56,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 '}';
