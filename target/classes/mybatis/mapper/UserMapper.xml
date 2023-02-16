@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace需要和Mapper接口的全类名保持一致 -->
+<mapper namespace="mybatis.mapper.UserMapper">
+    <!--
+        id：绑定方法 执行匹配的SQL语句
+        resultType：指定返回值类型 将表中查询的数据封装成哪个类的对象
+    -->
+    <select id="selectAll" resultType="mybatis.pojo.User">
+        select * from t_user
+    </select>
+
+    <!--
+        数据库表的字段名称 和 实体类的属性名称 不一样，则不能自动封装数据
+            * 解决方式1：（缺点是每次查询都要起别名，太长了）
+                sql语句中不一样的字段取别名，使得数据库字段的别名和实体类的属性名一样
+            * 解决方式2：
+                定义sql片段，调用sql语句中直接引用该sql片段即可
+     -->
+    <select id="selectByName" resultType="mybatis.pojo.User">
+        select id, user_name as userName, sex, address from t_user where user_name = #{name};
+        <!-- select * from t_user where user_name = #{name}; -->
+    </select>
+
+    <sql id="sql_block">
+        id, user_name as userName, sex, address
+    </sql>
+
+    <select id="selectById" resultType="mybatis.pojo.User">
+        select
+            <include refid="sql_block"/>
+        from
+            t_user
+        where
+            id = #{id};
+    </select>
+</mapper>
+
+<!-- 测试111 -->
