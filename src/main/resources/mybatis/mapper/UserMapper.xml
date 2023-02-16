@@ -30,13 +30,37 @@
         id, user_name as userName, sex, address
     </sql>
 
+    <!--
+        参数占位符
+            1. #{}: 会将其替换为? 可以防止SQL注入的问题
+            2. ${}: 拼接sql，会存在SQL注入的问题，不安全
+     -->
     <select id="selectById" resultType="mybatis.pojo.User">
         select
             <include refid="sql_block"/>
         from
             t_user
         where
-            id = #{id};
+            id = ${id};
+    </select>
+
+    <!--
+    特殊字符
+        概述
+            在使用某些特殊字符，例如 < 时，因为xml的原因无法使用时，需要解决
+        解决
+            方式一：转义
+            方式二：CDATA区
+                输入CD会有提示，回车 在CDATA区中输入特殊字符即可
+    -->
+    <select id="selectByLessId" resultType="mybatis.pojo.User">
+        select
+            <include refid="sql_block"/>
+        from
+            t_user
+        where
+            <!-- CDATA区解决特殊字符的问题 -->
+            id <![CDATA[ < ]]> ${id};
     </select>
 </mapper>
 

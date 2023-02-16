@@ -8,4 +8,5 @@ public interface UserMapper {
     List<User> selectAll();
     User selectByName(String name);
     User selectById(int id);
+    List<User> selectByLessId(int id);
 }
