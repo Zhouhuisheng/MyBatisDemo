@@ -168,4 +168,37 @@
         where
             id = #{id}
     </update>
+
+    <!-- 删除 -->
+    <delete id="deleteById">
+        delete
+        from
+            t_user
+        where
+            id = #{id}
+    </delete>
+    <!-- 批量删除 -->
+    <delete id="deleteByIds">
+        delete
+        from
+            t_user
+        where id
+        in (
+            <!-- collection:数组， item：数组的元素， separator：分隔符 -->
+            <foreach collection="ids" item="id" separator=",">
+                #{id}
+            </foreach>
+            );
+    </delete>
+
+    <!-- 测试多个参数 -->
+    <select id="MultipleParam" resultType="mybatis.pojo.User">
+        select
+            *
+        from
+            t_user
+        where
+            <!-- user_name = #{param1} or address = #{param2} -->
+            user_name = #{arg0} or address = #{arg1}
+    </select>
 </mapper>

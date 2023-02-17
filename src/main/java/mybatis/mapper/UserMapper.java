@@ -39,4 +39,23 @@ public interface UserMapper {
      *  动态修改
      */
     void updateByDynamic(User user);
+
+    /**
+     *  根据id删除
+     */
+    void deleteById(int id);
+    /**
+     *  根据id批量删除
+     */
+    void deleteByIds(@Param("ids")int[] ids);
+
+    /**
+     *  测试多个参数
+     *      * 底层会自动地将多个参数封装成Map集合(尽量用@Param注解，这种方式可读性太差了)
+     *          map.put("arg0", 参数值1)
+     *          map.put("param1", 参数值1)
+     *          map.put("arg1", 参数值2)
+     *          map.put("param2", 参数值2)
+     */
+    List<User> MultipleParam(String userName, String address);
 }
