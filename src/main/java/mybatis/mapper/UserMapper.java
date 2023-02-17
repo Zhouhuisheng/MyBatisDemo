@@ -31,4 +31,12 @@ public interface UserMapper {
      *  添加(参数为除了id以外的所有参数)
      */
     void add(User user);
+    /**
+     *  修改所有
+     */
+    void update(User user);
+    /**
+     *  动态修改
+     */
+    void updateByDynamic(User user);
 }
