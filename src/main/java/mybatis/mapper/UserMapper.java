@@ -26,4 +26,9 @@ public interface UserMapper {
      *  动态单条件查询
      */
     List<User> selectByDynamicSingleCondition(Map map);
+
+    /**
+     *  添加(参数为除了id以外的所有参数)
+     */
+    void add(User user);
 }

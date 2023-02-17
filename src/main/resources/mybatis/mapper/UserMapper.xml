@@ -133,6 +133,11 @@
             </choose>
     </select>
 
+    <!-- 添加 -->
+    <insert id="add">
+        insert into t_user(user_name, sex, address)
+        values(#{userName}, #{sex}, #{address})
+    </insert>
 </mapper>
 
 <!-- 测试111 -->
