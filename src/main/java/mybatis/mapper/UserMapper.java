@@ -1,7 +1,9 @@
 package mybatis.mapper;
 
 import mybatis.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -58,4 +60,14 @@ public interface UserMapper {
      *          map.put("param2", 参数值2)
      */
     List<User> MultipleParam(String userName, String address);
+
+    /**
+     *  注解开发
+     *      查询  @Select("sql语句")
+     *      删除  @Delete("sql语句")
+     *      增加  @Insert("sql语句")
+     *      修改  @Update("sqlyuju")
+     */
+    @Select("select id, user_name userName, sex, address from t_user where id = #{id}")
+    User selectById2(int id);
 }

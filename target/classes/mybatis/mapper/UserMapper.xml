@@ -198,6 +198,7 @@
         from
             t_user
         where
+            <!-- Mapper接口中未指定@Param时，默认的key param1、arg0、param2、arg1都可以用 -->
             <!-- user_name = #{param1} or address = #{param2} -->
             user_name = #{arg0} or address = #{arg1}
     </select>
