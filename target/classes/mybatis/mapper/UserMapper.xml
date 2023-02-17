@@ -78,6 +78,61 @@
         where
             sex = #{sex} and address like #{address}
     </select>
+
+    <!--
+        多条件动态查询
+            if标签：条件判断
+                * test：写逻辑表达式
+                * 标签体：写执行的sql语句
+            遇到问题：某个条件缺失时，and的有无会导致sql语法错误
+                * 解决方式一：恒等式（在每个条件语句前加上and，开头加个恒等式）
+                * 解决方式二：<where>替换where关键字
+    -->
+    <select id="selectByDynamicCondition" resultType="mybatis.pojo.User">
+        select
+            id, user_name userName, sex, address
+        from
+            t_user
+        <!--  解决方式二：<where>替换where关键字 -->
+        <where>
+            <if test="userName != null and userName != '' ">
+                and user_name like #{userName}
+            </if>
+
+            <if test="sex != null and sex != '' ">
+                and sex = #{sex}
+            </if>
+
+            <if test="address != null and address != '' ">
+                and address like #{address}
+            </if>
+        </where>
+    </select>
+    <!--
+        单条件动态查询(遇到一个条件符合就执行，且只会执行一个)
+    -->
+    <select id="selectByDynamicSingleCondition" resultType="mybatis.pojo.User">
+        select
+            id, user_name userName, sex, address
+        from
+            t_user
+        where
+            <choose> <!-- 相当于switch 但是只会选择一个case就跳出 -->
+                <when test="userName != null and userName != '' "> <!-- 相当于case -->
+                    user_name like #{userName}
+                </when>
+                <when test="sex != null and sex != '' ">
+                    sex = #{sex}
+                </when>
+                <when test="address != null and address != '' ">
+                    address like #{address}
+                </when>
+                <otherwise> <!-- 相当于default -->
+                    1 = 1
+                </otherwise>
+            </choose>
+    </select>
+
 </mapper>
 
 <!-- 测试111 -->

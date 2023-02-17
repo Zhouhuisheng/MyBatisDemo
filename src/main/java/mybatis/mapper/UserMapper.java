@@ -18,4 +18,12 @@ public interface UserMapper {
      */
     List<User> selectByCondition(@Param("sex")String sex, @Param("address")String address);
     List<User> selectByCondition2(Map map);
+    /**
+     *  动态条件查询（SQL语句会随着用户的输入和外部条件的变化而变化）
+     */
+    List<User> selectByDynamicCondition(Map map);
+    /**
+     *  动态单条件查询
+     */
+    List<User> selectByDynamicSingleCondition(Map map);
 }
