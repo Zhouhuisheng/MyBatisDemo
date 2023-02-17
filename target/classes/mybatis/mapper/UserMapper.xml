@@ -59,7 +59,24 @@
         from
             t_user
         where
+            <!-- CDATA区解决特殊字符的问题 -->
             id <![CDATA[ < ]]> ${id};
+    </select>
+    <select id="selectByCondition" resultType="mybatis.pojo.User">
+        select
+            id, user_name userName, sex, address
+        from
+            t_user
+        where
+            sex = #{sex} and address like #{address}
+    </select>
+    <select id="selectByCondition2" resultType="mybatis.pojo.User">
+        select
+            id, user_name userName, sex, address
+        from
+            t_user
+        where
+            sex = #{sex} and address like #{address}
     </select>
 </mapper>
 
